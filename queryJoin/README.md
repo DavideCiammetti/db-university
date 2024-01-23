@@ -49,3 +49,24 @@ INNER JOIN `departments`
 ON `teachers`.`id` = `course_teacher`.`teacher_id` AND `course_teacher`.`course_id` = `courses`.`id` AND `courses`.`degree_id` = `degrees`.`id` AND `degrees`.`department_id` = `departments`.`id`
 WHERE `departments`.`name` = 'Dipartimento di Matematica'
 
+7)  filtro per numero di tentativi per ogni esame
+SELECT `students`.`name`,COUNT(`exams`.`course_id`) AS `numero_tentativi`, `exams`.`course_id`
+FROM `exam_student` 
+INNER JOIN `exams` 
+INNER JOIN `students` ON `exam_student`.`exam_id` = `exams`.`id` AND `exam_student`.`student_id` = `students`.`id` 
+GROUP BY `students`.`name`, `exams`.`course_id` ;
+
+7) filtro per numero di tentativi per ogni esame con voto massimo
+SELECT `students`.`name`,COUNT(`exams`.`course_id`) AS `numero_tentativi`, `exams`.`course_id`, MAX(`exam_student`.`vote`)
+FROM `exam_student` 
+INNER JOIN `exams` 
+INNER JOIN `students` ON `exam_student`.`exam_id` = `exams`.`id` AND `exam_student`.`student_id` = `students`.`id` 
+GROUP BY `students`.`name`, `exams`.`course_id` ;
+
+7) filtro studenti ed esami con voto minimo 18
+SELECT `students`.`name`,COUNT(`exams`.`course_id`) AS `numero_tentativi`, `exams`.`course_id`, `exam_student`.`vote`
+FROM `exam_student` 
+INNER JOIN `exams` 
+INNER JOIN `students` ON `exam_student`.`exam_id` = `exams`.`id` AND `exam_student`.`student_id` = `students`.`id` 
+WHERE `exam_student`.`vote` = '18'
+GROUP BY `students`.`name`, `exams`.`course_id` ;
