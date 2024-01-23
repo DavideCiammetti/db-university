@@ -31,4 +31,4 @@ per ogni appello d’Esame a cui lo Studente ha partecipato, è necessario memor
 5) SELECT * FROM `exams` WHERE date = '2020-06-20' && hour > '14:00:00';
 6) SELECT * FROM `degrees` WHERE level = 'magistrale';
 7) SELECT * FROM `departments` WHERE 1;
-7) SELECT * FROM `teachers` WHERE phone;
+8) SELECT * FROM `teachers` WHERE phone;
